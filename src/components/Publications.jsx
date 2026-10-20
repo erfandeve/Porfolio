@@ -52,7 +52,7 @@ export default function Publications() {
                 transition={{ duration: 0.5, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 className="card"
               >
-                <span className="kind-chip">{p.kind === 'journal' ? t.filters.journal : t.filters.congress}</span>
+                <span className="kind-chip">{t.kinds[p.kind]}</span>
                 <div className="pub">
                   <div className="pub-year">
                     {p.year}

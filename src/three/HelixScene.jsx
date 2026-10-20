@@ -84,7 +84,7 @@ export default function HelixScene() {
       <pointLight position={[4, 4, 5]} intensity={40} color="#39ff14" distance={18} />
       <pointLight position={[-4, -3, 2]} intensity={26} color="#00ffa3" distance={16} />
       <Suspense fallback={null}>
-        <group scale={compact ? 0.74 : 1}>
+        <group scale={compact ? 0.74 : 0.86}>
           <Helix />
         </group>
       </Suspense>

@@ -39,6 +39,7 @@ export const strings = {
       contact: { kicker: '10 — Contact', title: 'Get in touch', sub: 'Open to Ph.D. positions and collaborations' },
     },
     filters: { all: 'All', journal: 'Journal articles', congress: 'Congress abstracts' },
+    kinds: { journal: 'Journal article', congress: 'Congress abstract' },
     labels: {
       readPaper: 'Read the paper',
       noLink: 'No public link',
@@ -104,6 +105,7 @@ export const strings = {
       contact: { kicker: '10 — Kontakt', title: 'Kontakt aufnehmen', sub: 'Offen für Promotionsstellen und Kooperationen' },
     },
     filters: { all: 'Alle', journal: 'Fachartikel', congress: 'Kongressbeiträge' },
+    kinds: { journal: 'Fachartikel', congress: 'Kongressbeitrag' },
     labels: {
       readPaper: 'Zur Publikation',
       noLink: 'Kein öffentlicher Link',
@@ -169,6 +171,7 @@ export const strings = {
       contact: { kicker: '۱۰ — ارتباط', title: 'در تماس باشیم', sub: 'آماده همکاری و موقعیت‌های دکتری' },
     },
     filters: { all: 'همه', journal: 'مقالات ژورنالی', congress: 'چکیده‌های کنگره' },
+    kinds: { journal: 'مقاله ژورنالی', congress: 'چکیده کنگره' },
     labels: {
       readPaper: 'مطالعه مقاله',
       noLink: 'بدون لینک عمومی',
