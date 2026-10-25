@@ -4,7 +4,7 @@ import { useLang } from '../i18n/LanguageContext'
 import LangSwitch from './LangSwitch'
 import { IconMenu, IconClose } from './Icons'
 
-const SECTIONS = ['home', 'about', 'research', 'publications', 'experience', 'education', 'skills', 'talks', 'contact']
+const SECTIONS = ['home', 'about', 'research', 'publications', 'talks', 'experience', 'education', 'skills', 'contact']
 
 export default function Nav() {
   const { t, pick } = useLang()

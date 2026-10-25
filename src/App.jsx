@@ -57,10 +57,10 @@ function Shell() {
           <About />
           <Research />
           <Publications />
+          <Talks />
           <Experience />
           <Education />
           <Skills />
-          <Talks />
           <Languages />
           <Contact />
         </main>

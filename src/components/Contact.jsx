@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useLang } from '../i18n/LanguageContext'
 import { profile } from '../data/profile'
+import { referees } from '../data/cv'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
-import { IconMail, IconPhone, IconPin, IconLinkedin, IconDownload, IconArrow } from './Icons'
+import { IconMail, IconPhone, IconPin, IconLinkedin, IconDownload, IconArrow, IconUser } from './Icons'
 
 export default function Contact() {
   const { t, pick, rtl } = useLang()
@@ -34,7 +35,7 @@ export default function Contact() {
 
   return (
     <section className="section" id="contact">
-      <span className="watermark" aria-hidden="true">10</span>
+      <span className="watermark" aria-hidden="true">09</span>
       <div className="container">
         <SectionHead
           kicker={t.sections.contact.kicker}
@@ -118,6 +119,27 @@ export default function Contact() {
               <p className="form-note">{t.contact.formNote}</p>
             </form>
           </Reveal>
+        </div>
+
+        <div className="sub-block">
+          <Reveal>
+            <h3 className="sub-title">{t.sections.referees.title}</h3>
+            <p className="section-sub">{t.sections.referees.sub}</p>
+          </Reveal>
+          <div className="referee-grid">
+            {referees.map((r, i) => (
+              <Reveal key={r.id} delay={i * 0.06} className="card referee">
+                <span className="ci-icon">
+                  <IconUser width={17} height={17} />
+                </span>
+                <div>
+                  <h4>{pick(r.name)}</h4>
+                  <span className="referee-role">{pick(r.role)}</span>
+                  <span className="referee-org">{pick(r.org)}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

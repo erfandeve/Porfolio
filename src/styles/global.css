@@ -673,8 +673,23 @@ html[data-lang='fa'] .scroll-cue { font-family: var(--font-body); letter-spacing
 
 .portrait img {
   width: 100%;
-  filter: contrast(1.05) saturate(1.05);
-  mix-blend-mode: normal;
+  display: block;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(0.9) brightness(0.98);
+}
+
+/* green grade so the photography sits inside the palette */
+.portrait::before,
+.lab-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, #39ff14, #00ffa3);
+  mix-blend-mode: color;
+  opacity: 0.16;
 }
 
 .portrait::after {
@@ -1028,6 +1043,7 @@ html[data-lang='fa'] .kind-chip { font-family: var(--font-body); letter-spacing:
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 22px;
 }
 
@@ -1051,39 +1067,24 @@ html[data-lang='fa'] .kind-chip { font-family: var(--font-body); letter-spacing:
   opacity: 0.8;
 }
 
-.skill-row { margin-block-end: 16px; }
-.skill-row:last-child { margin-block-end: 0; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 9px; }
 
-.skill-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 13.5px;
+.chip {
+  font-size: 13px;
+  line-height: 1.5;
   color: var(--text-2);
-  margin-block-end: 7px;
-  gap: 12px;
-}
-
-.skill-meta b {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 500;
-  color: var(--neon);
-}
-
-.bar {
-  height: 5px;
+  padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(57, 255, 20, 0.09);
-  overflow: hidden;
-  position: relative;
+  border: 1px solid var(--line);
+  background: rgba(6, 24, 15, 0.7);
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
 
-.bar-fill {
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--deep), var(--neon) 70%, var(--acid));
-  box-shadow: 0 0 14px rgba(57, 255, 20, 0.6);
+.chip:hover {
+  border-color: var(--line-strong);
+  color: var(--text);
+  background: rgba(57, 255, 20, 0.07);
+  transform: translateY(-2px);
 }
 
 /* ---------- talks & courses ---------- */
@@ -1124,30 +1125,22 @@ html[data-lang='fa'] .talk-format { font-family: var(--font-body); letter-spacin
 html[data-lang='fa'] .talk-date { font-family: var(--font-body); }
 
 /* ---------- languages ---------- */
-.lang-card { display: grid; gap: 18px; }
-.lang-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.lang-head h3 { font-size: 20px; }
-.lang-head span { font-size: 12.5px; color: var(--neon); }
-.lang-skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-
-@media (max-width: 520px) {
-  .lang-skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-.ring-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.ring-wrap small { font-size: 12px; color: var(--muted); }
-.ring { position: relative; width: 74px; height: 74px; }
+.lang-card { display: flex; align-items: center; gap: 22px; }
+.lang-text h3 { font-size: 21px; }
+.lang-text span { font-size: 13.5px; color: var(--neon-soft); display: block; margin-block-start: 6px; }
+.ring { position: relative; width: 74px; height: 74px; flex: 0 0 auto; }
+.ring.big { width: 94px; height: 94px; }
 .ring svg { transform: rotate(-90deg); }
 .ring circle { fill: none; stroke-width: 5; stroke-linecap: round; }
 .ring .track { stroke: rgba(57, 255, 20, 0.1); }
-.ring .prog { stroke: url(#ringGrad); filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.7)); }
+.ring .prog { filter: drop-shadow(0 0 6px rgba(57, 255, 20, 0.7)); }
 .ring b {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text);
 }
@@ -1406,6 +1399,7 @@ html[data-lang='fa'] .loader-text { font-family: var(--font-body); letter-spacin
   /* nothing smaller than 11.5px on a phone */
   .tag,
   .kind-chip,
+  .ms-status,
   .ci-body small,
   .field label,
   .scroll-cue { font-size: 11.5px; letter-spacing: 0.1em; }
@@ -1452,4 +1446,239 @@ html[data-lang='fa'] .loader-text { font-family: var(--font-body); letter-spacin
   .card { padding: 18px 16px; }
   .skill-meta { font-size: 13px; }
   .ring { width: 66px; height: 66px; }
+}
+
+/* ============================================================
+   New content blocks — CV 2026
+   ============================================================ */
+
+/* sub-blocks inside a section */
+.sub-block { margin-block-start: clamp(44px, 6vw, 76px); }
+
+.sub-title {
+  font-size: clamp(22px, 3vw, 30px);
+  background: linear-gradient(180deg, #ffffff 0%, #a9f8bd 150%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sub-title::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  flex: 0 0 22px;
+  background: linear-gradient(90deg, var(--neon), transparent);
+  box-shadow: var(--glow-sm);
+}
+
+.sub-block .section-sub { margin-block: 8px 26px; }
+
+/* portrait caption */
+.portrait { margin: 0; }
+
+.portrait figcaption {
+  position: absolute;
+  inset-block-end: 14px;
+  inset-inline-start: 16px;
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--neon);
+  text-shadow: 0 0 12px rgba(3, 16, 10, 0.9);
+}
+
+html[data-lang='fa'] .portrait figcaption { font-family: var(--font-body); letter-spacing: 0; font-size: 12px; }
+
+/* wide laboratory photo */
+.lab-strip {
+  position: relative;
+  margin-block-end: clamp(30px, 5vw, 48px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 40px 90px -60px rgba(57, 255, 20, 0.8);
+}
+
+.lab-strip img {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  object-position: center 42%;
+  filter: contrast(1.05) saturate(0.9) brightness(0.96);
+  display: block;
+}
+
+.lab-strip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 16, 10, 0.25) 0%, transparent 35%, rgba(3, 16, 10, 0.85) 100%);
+  pointer-events: none;
+}
+
+.lab-strip-caption {
+  position: absolute;
+  inset-block-end: 16px;
+  inset-inline-start: 20px;
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--neon);
+}
+
+html[data-lang='fa'] .lab-strip-caption { font-family: var(--font-body); letter-spacing: 0; font-size: 12.5px; }
+
+/* education highlight chips */
+.tl-highlights { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 14px; }
+
+.highlight-chip {
+  font-size: 12.5px;
+  color: var(--neon);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: rgba(57, 255, 20, 0.07);
+  box-shadow: inset 0 0 18px rgba(57, 255, 20, 0.08);
+}
+
+/* manuscripts */
+.ms-list { display: grid; gap: 12px; }
+
+.ms-item {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-inline-start: 2px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(6, 22, 14, 0.55);
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.ms-item:hover {
+  border-color: var(--line-strong);
+  background: rgba(57, 255, 20, 0.05);
+  transform: translateY(-2px);
+}
+
+.ms-item.status-completed { border-inline-start-color: var(--mint); }
+.ms-item.status-planned { border-inline-start-color: rgba(126, 168, 146, 0.5); }
+
+.ms-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  background: rgba(57, 255, 20, 0.08);
+  color: var(--neon);
+}
+
+.ms-body h4 { font-family: var(--font-display); font-size: 16px; line-height: 1.45; margin: 0; }
+html[data-lang='fa'] .ms-body h4 { line-height: 1.7; }
+
+.ms-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  margin-block-start: 8px;
+}
+
+.ms-authors { color: var(--neon-soft); }
+.ms-note { font-size: 13px; color: var(--muted); margin: 8px 0 0; line-height: 1.7; }
+
+.ms-status {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(57, 255, 20, 0.06);
+  white-space: nowrap;
+}
+
+html[data-lang='fa'] .ms-status { font-family: var(--font-body); letter-spacing: 0; font-size: 12px; }
+
+.status-completed .ms-status { color: var(--mint); border-color: rgba(0, 255, 163, 0.3); }
+.status-planned .ms-status { color: var(--muted); }
+
+/* conference cards */
+.talk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+.talk-card { display: flex; flex-direction: column; }
+
+.talk-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block-end: 14px;
+}
+
+.talk-top .talk-format { margin-block-end: 0; }
+
+.talk-year {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--neon);
+  text-shadow: 0 0 18px rgba(57, 255, 20, 0.4);
+}
+
+.talk-authors { font-size: 12.5px; color: var(--neon-soft); margin: 10px 0 0; }
+.talk-card .talk-event { margin-block-start: 8px; }
+.talk-card .pub-link { margin-block-start: 14px; }
+
+/* referees */
+.referee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
+.referee { display: flex; align-items: flex-start; gap: 14px; padding: 20px; }
+.referee h4 { font-family: var(--font-display); font-size: 16px; margin: 0; }
+.referee-role { display: block; font-size: 13px; color: var(--neon); margin-block-start: 5px; }
+.referee-org { display: block; font-size: 12.5px; color: var(--muted); margin-block-start: 3px; line-height: 1.6; }
+
+/* stat suffix */
+.stat-value small { font-size: 0.5em; opacity: 0.75; margin-inline-start: 2px; }
+
+@media (max-width: 680px) {
+  .ms-item { grid-template-columns: 38px minmax(0, 1fr); }
+  .ms-status { grid-column: 2; justify-self: start; }
+  .lab-strip img { aspect-ratio: 4 / 3; }
+  .lang-card { gap: 16px; }
+}
+
+/* mobile overrides for the CV-2026 blocks (kept last so they win) */
+@media (max-width: 760px) {
+  .ms-status {
+    font-size: 11.5px;
+    white-space: normal;
+    max-width: 100%;
+  }
+
+  .portrait figcaption,
+  .lab-strip-caption { font-size: 11.5px; }
+
+  .sub-block { margin-block-start: 40px; }
+  .ms-item { padding: 16px; gap: 12px; }
+  .chip { font-size: 12.5px; padding: 8px 13px; }
+  .highlight-chip { font-size: 12px; }
+  .referee { padding: 16px; }
+  .talk-year { font-size: 18px; }
 }

@@ -21,22 +21,22 @@ npm run preview  # preview the production build
 | Section | Content |
 | --- | --- |
 | Hero | Animated 3D virion (icosahedral capsid, glycoprotein spikes, RNA genome, orbiting satellite particles) |
-| About | Portrait, biography, quick facts, key figures |
+| About | BSL-2 portrait, research biography, key figures (GPA, national rank, H9N2 isolates, output) |
 | Research | Four research focus areas + animated 3D double helix |
-| Publications | 4 entries, filterable (journal articles / congress abstracts), each with its DOI or Civilica link |
-| Experience | 6 laboratory and teaching positions on a glowing timeline |
-| Education | B.Sc. Laboratory Sciences, M.Sc. Medical Virology |
-| Skills | 4 groups × 4 techniques with animated proficiency bars |
-| Talks & Courses | Congress presentations + workshops and certificates |
-| Languages | Persian and English, per-skill rings |
-| Contact | Email, phone, LinkedIn, address, CV download, mail-to contact form |
+| Publications | Journal articles and book chapter with author lists and DOI links, plus five manuscripts with status |
+| Conferences | Oral and poster presentations with year, authors and links |
+| Experience | Research positions (thesis, HBV project, pharmacology) and clinical/teaching timeline, with a wide laboratory photo |
+| Education | Degrees with GPA, national ranking and tuition-free admission, plus courses and certificates |
+| Skills | Six method groups as chips — virology, molecular biology, bioinformatics, cell culture, statistics, clinical |
+| Languages | Persian and English proficiency rings |
+| Contact | Email, phone, LinkedIn, location, CV download, contact form and academic referees |
 
 ## Editing the content
 
 All text lives in two files, and every string is an object with `en`, `de` and `fa` keys:
 
 - `src/data/profile.js` — name, role, contact details, biography, research focus, headline figures
-- `src/data/cv.js` — education, experience, publications, talks, courses, skills, languages
+- `src/data/cv.js` — education, research & clinical experience, publications, manuscripts, talks, courses, skills, languages, referees
 
 UI chrome (menu labels, buttons, form labels) lives in `src/i18n/strings.js`.
 
@@ -59,7 +59,8 @@ Adding a publication is one object in the `publications` array:
 
 ## Assets
 
-- `public/amirreza.png` — portrait (transparent background)
+- `public/amirreza-portrait.jpg` — BSL-2 laboratory portrait (About section)
+- `public/amirreza-lab.jpg` — diagnostic bench photograph (Experience section)
 - `public/AmirrezaKhoshniat-CV.pdf` — CV offered as a download
 - `public/virus.svg` — favicon and loader mark
 
@@ -111,7 +112,7 @@ npm run dev
 تمام متن‌ها در دو فایل زیر قرار دارد و هر رشته سه حالت `en` و `de` و `fa` دارد:
 
 - `src/data/profile.js` — نام، عنوان، اطلاعات تماس، بیوگرافی، زمینه‌های پژوهشی و آمار
-- `src/data/cv.js` — تحصیلات، سوابق شغلی، مقالات، ارائه‌ها، دوره‌ها، مهارت‌ها و زبان‌ها
+- `src/data/cv.js` — تحصیلات، سوابق پژوهشی و بالینی، مقالات، دست‌نوشته‌ها، ارائه‌ها، دوره‌ها، مهارت‌ها، زبان‌ها و معرف‌ها
 
 برچسب‌های رابط کاربری (منو، دکمه‌ها، فرم) در `src/i18n/strings.js` است.
 

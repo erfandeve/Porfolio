@@ -1,7 +1,7 @@
 import { useLang } from '../i18n/LanguageContext'
 import Reveal from './Reveal'
 
-/* Shared timeline used by both Experience and Education. */
+/* Shared timeline used by research, clinical and education blocks. */
 export default function Timeline({ items, roleKey = 'role' }) {
   const { pick, t } = useLang()
 
@@ -20,7 +20,25 @@ export default function Timeline({ items, roleKey = 'role' }) {
             </div>
             <div className="tl-org">{pick(item.org)}</div>
             <div className="tl-place">{pick(item.place)}</div>
+            {item.highlights?.length > 0 && (
+              <div className="tl-highlights">
+                {item.highlights.map((h, hi) => (
+                  <span className="highlight-chip" key={hi}>
+                    {pick(h)}
+                  </span>
+                ))}
+              </div>
+            )}
             <p className="tl-detail">{pick(item.detail)}</p>
+            {item.tags?.length > 0 && (
+              <div className="tag-row" style={{ marginBlockStart: 14, marginBlockEnd: 0 }}>
+                {item.tags.map((tag) => (
+                  <span className="tag" key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </Reveal>
       ))}

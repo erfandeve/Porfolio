@@ -3,7 +3,7 @@ import { useLang } from '../i18n/LanguageContext'
 import { profile, about, stats } from '../data/profile'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
-import { IconCalendar, IconUser, IconShield, IconPin } from './Icons'
+import { IconPin, IconMicroscope, IconFlask } from './Icons'
 
 export default function About() {
   const { t, pick } = useLang()
@@ -20,26 +20,23 @@ export default function About() {
 
         <div className="about-grid">
           <Reveal className="portrait-wrap">
-            <div className="portrait">
+            <figure className="portrait">
               <span className="portrait-scan" aria-hidden="true" />
               <img src={profile.photo} alt={pick(profile.name)} loading="lazy" />
-            </div>
+              <figcaption>{t.labels.portraitCaption}</figcaption>
+            </figure>
             <ul className="facts">
               <li>
-                <IconCalendar width={16} height={16} />
-                {pick(profile.birth)}
-              </li>
-              <li>
-                <IconUser width={16} height={16} />
-                {pick(profile.marital)}
-              </li>
-              <li>
-                <IconShield width={16} height={16} />
-                {pick(profile.military)}
+                <IconMicroscope width={16} height={16} />
+                {pick(profile.affiliation)}
               </li>
               <li>
                 <IconPin width={16} height={16} />
                 {pick(profile.location)}
+              </li>
+              <li>
+                <IconFlask width={16} height={16} />
+                {pick(profile.seeking)}
               </li>
             </ul>
           </Reveal>
@@ -62,7 +59,10 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 * i, duration: 0.5 }}
                   >
-                    <div className="stat-value">{s.value}</div>
+                    <div className="stat-value">
+                      {s.value}
+                      {s.suffix && <small>{s.suffix}</small>}
+                    </div>
                     <div className="stat-label">{pick(s.label)}</div>
                   </motion.div>
                 ))}

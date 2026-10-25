@@ -141,3 +141,17 @@ export const IconUser = (p) => (
     <path d="M4.8 20a7.2 7.2 0 0 1 14.4 0" />
   </svg>
 )
+
+export const IconDoc = (p) => (
+  <svg {...base} {...p}>
+    <path d="M14 3H7.5A1.5 1.5 0 0 0 6 4.5v15A1.5 1.5 0 0 0 7.5 21h9a1.5 1.5 0 0 0 1.5-1.5V7z" />
+    <path d="M14 3v4.5H18M9 12.5h6M9 16h4" />
+  </svg>
+)
+
+export const IconQuote = (p) => (
+  <svg {...base} {...p}>
+    <path d="M9.5 6.5c-2.6 1-4 3.2-4 6.1V17h5v-5H7.8c0-1.9.6-3.2 2.4-4Z" />
+    <path d="M18.5 6.5c-2.6 1-4 3.2-4 6.1V17h5v-5h-2.7c0-1.9.6-3.2 2.4-4Z" />
+  </svg>
+)

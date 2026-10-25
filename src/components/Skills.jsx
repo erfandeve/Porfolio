@@ -9,7 +9,7 @@ export default function Skills() {
 
   return (
     <section className="section" id="skills">
-      <span className="watermark" aria-hidden="true">06</span>
+      <span className="watermark" aria-hidden="true">07</span>
       <div className="container">
         <SectionHead
           kicker={t.sections.skills.kicker}
@@ -19,28 +19,25 @@ export default function Skills() {
 
         <div className="skills-grid">
           {skillGroups.map((g, gi) => (
-            <Reveal key={g.id} delay={gi * 0.07} className="card skill-group">
+            <Reveal key={g.id} delay={gi * 0.06} className="card skill-group">
               <h3>
                 <span>{String(gi + 1).padStart(2, '0')}</span>
                 {pick(g.group)}
               </h3>
-              {g.items.map((s, si) => (
-                <div className="skill-row" key={si}>
-                  <div className="skill-meta">
-                    <span>{pick(s.name)}</span>
-                    <b>{s.level}%</b>
-                  </div>
-                  <div className="bar">
-                    <motion.div
-                      className="bar-fill"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${s.level}%` }}
-                      viewport={{ once: true, margin: '-40px' }}
-                      transition={{ duration: 1.1, delay: 0.1 + si * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                  </div>
-                </div>
-              ))}
+              <div className="chip-row">
+                {g.items.map((item, si) => (
+                  <motion.span
+                    className="chip"
+                    key={si}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-30px' }}
+                    transition={{ duration: 0.4, delay: si * 0.035 }}
+                  >
+                    {pick(item)}
+                  </motion.span>
+                ))}
+              </div>
             </Reveal>
           ))}
         </div>
